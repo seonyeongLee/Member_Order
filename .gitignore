@@ -1,7 +1,11 @@
 HELP.md
 .gradle
 build/
+<<<<<<< HEAD
 !member/gradle/wrapper/gradle-wrapper.jar
+=======
+!gradle/wrapper/gradle-wrapper.jar
+>>>>>>> 6f27410 (회원, 주문 API 개발)
 !**/src/main/**/build/
 !**/src/test/**/build/
 
