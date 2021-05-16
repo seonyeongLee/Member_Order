@@ -10,7 +10,7 @@ import javax.persistence.criteria.Predicate;
 import javax.persistence.criteria.Root;
 
 public class MemberOrderTrnSpecification {
-    public static Specification<MemberOrderTrn> equalMemberId(String memberId) {
+    public static Specification<MemberOrderTrn> equalMemberId(Long memberId) {
         return new Specification<MemberOrderTrn>() {
             @Override
             public Predicate toPredicate(Root<MemberOrderTrn> root, CriteriaQuery<?> query, CriteriaBuilder criteriaBuilder) {
