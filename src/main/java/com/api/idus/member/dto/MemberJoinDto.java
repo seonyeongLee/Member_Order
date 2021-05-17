@@ -27,7 +27,9 @@ public class MemberJoinDto {
         private String nickname;
 
         @NotBlank(message = "비밀번호을 입력해주세요.")
-        @Size(min = 10, max = 20, message = "비밀번호는 10~16자 사이로 입력해주세요.")
+        @Size(min = 10, max = 16, message = "비밀번호는 10~16자 사이로 입력해주세요.")
+        @Pattern(regexp = "^(?=.*[a-z])(?=.*[A-Z])(?=.*\\d)(?=.*[$@$!%*?&])[A-Za-z\\d$@$!%*?&]{10,16}",
+                    message = "비밀범호는 영문 대문자, 영문 소문자, 특수 문자, 숫자 각 1개 이상씩 포함해서 입력해주세요.")
         private String password;
 
         @NotBlank(message = "전화번호을 입력해주세요.")

@@ -2,6 +2,7 @@ package com.api.idus.member.service.impl;
 
 import com.api.idus.common.exception.DataNotFoundException;
 import com.api.idus.common.exception.MemberExistException;
+import com.api.idus.common.utility.EncryptUtility;
 import com.api.idus.common.utility.MapperUtility;
 import com.api.idus.common.utility.ObjectUtility;
 import com.api.idus.member.dto.MemberDetailDto;
@@ -33,6 +34,8 @@ public class MemberServiceImpl implements MemberService {
 
     @Override
     public void joinMember(MemberJoinDto.Request reqDto) {
+        reqDto.setPassword(EncryptUtility.SHA256Encrypt(reqDto.getPassword()));
+
         //유효한 회원인지 조회
         Specification spec = Specification.where(MemberSpecification.equalNickname(reqDto.getNickname()));
 
@@ -51,7 +54,7 @@ public class MemberServiceImpl implements MemberService {
         MemberListDto.Response resDto = new MemberListDto.Response();
 
         int page = (pageable.getPageNumber() == 0) ? 0 : (pageable.getPageNumber() - 1);
-        pageable = PageRequest.of(page, 10);
+        pageable = PageRequest.of(page, pageable.getPageSize());
 
         Specification spec = null;
         if(ObjectUtility.isNotEmpty(reqDto.getName())) {

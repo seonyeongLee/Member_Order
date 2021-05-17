@@ -21,6 +21,8 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
 
 import javax.validation.Valid;
+import java.io.UnsupportedEncodingException;
+import java.security.NoSuchAlgorithmException;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -60,7 +62,7 @@ public class MemberController {
 
         try {
             memberService.joinMember(reqDto);
-        } catch(MemberExistException exception) {
+        } catch(MemberExistException | SecurityException  exception) {
             MemberJoinDto.RespHeadData header = MemberJoinDto.RespHeadData.builder()
                     .rst("F").rstMsg(exception.getMessage())
                     .build();
@@ -70,6 +72,7 @@ public class MemberController {
 
         MemberJoinDto.RespHeadData header = MemberJoinDto.RespHeadData.builder()
                 .rst("S").build();
+        resDto.setHeadData(header);
 
         return resDto;
     }

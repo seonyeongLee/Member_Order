@@ -64,7 +64,7 @@ public class LoginController {
                     .build();
 
             resDto.setHeadData(headData);
-        } catch (DataNotFoundException exception) {
+        } catch (DataNotFoundException | SecurityException exception) {
             LoginDto.RespHeadData headData = LoginDto.RespHeadData.builder()
                     .rst("F").rstMsg(exception.getMessage())
                     .build();

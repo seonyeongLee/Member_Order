@@ -5,11 +5,11 @@ import com.api.idus.Login.dto.LogoutDto;
 import com.api.idus.Login.service.LoginService;
 import com.api.idus.Login.vo.LoginVo;
 import com.api.idus.common.exception.DataNotFoundException;
+import com.api.idus.common.utility.EncryptUtility;
 import com.api.idus.common.utility.ObjectUtility;
 import com.api.idus.member.entity.Member;
 import com.api.idus.member.repository.MemberRepository;
 import com.api.idus.member.repository.specification.MemberSpecification;
-import com.api.idus.order.dto.OrderListDto;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.data.jpa.domain.Specification;
@@ -28,6 +28,8 @@ public class LoginServiceImpl implements LoginService {
 
     @Override
     public LoginDto.Response doLogin(LoginDto.Request reqDto, HttpServletRequest request) {
+        String encPassword = EncryptUtility.SHA256Encrypt(reqDto.getPassword());
+
         //유효한 회원인지 조회
         Specification spec = Specification.where(MemberSpecification.equalNickname(reqDto.getNickname()));
 
@@ -36,7 +38,7 @@ public class LoginServiceImpl implements LoginService {
             member.orElseThrow(() -> new DataNotFoundException("회원이 존재하지 않습니다."));
         }
 
-        if(!member.get().getPassword().equals(reqDto.getPassword())) {
+        if(!member.get().getPassword().equals(encPassword)) {
             throw new DataNotFoundException("비밀번호를 확인후 다시 로그인 해주세요.");
         }
 

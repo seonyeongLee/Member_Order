@@ -22,13 +22,4 @@ public class MemberOrderTrn implements Serializable {
     @Column(name = "ORDER_NUM", length = 12, nullable = false)
     private String orderNum;
 
-    /*
-    @OneToOne
-    @JoinColumn(name = "MEMBER_ID", insertable=false, updatable=false)
-    private Member member;
-
-    @OneToOne
-    @JoinColumn(name = "ORDER_NUM", insertable=false, updatable=false)
-    private Orders order;
-    */
 }
