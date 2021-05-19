@@ -1,6 +1,5 @@
 package com.api.idus.order.entity;
 
-import com.api.idus.member.entity.Member;
 import com.api.idus.order.repository.pk.OrderTrnPK;
 import lombok.Getter;
 import lombok.Setter;
