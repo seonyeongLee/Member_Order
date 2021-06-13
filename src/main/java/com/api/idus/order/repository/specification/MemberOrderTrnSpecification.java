@@ -11,6 +11,8 @@ import javax.persistence.criteria.Root;
 
 public class MemberOrderTrnSpecification {
     public static Specification<MemberOrderTrn> equalMemberId(Long memberId) {
+        /*
+         *  해당부분 람다식으로 변경 가능
         return new Specification<MemberOrderTrn>() {
             @Override
             public Predicate toPredicate(Root<MemberOrderTrn> root, CriteriaQuery<?> query, CriteriaBuilder criteriaBuilder) {
@@ -18,6 +20,11 @@ public class MemberOrderTrnSpecification {
                 return criteriaBuilder.equal(root.get("memberId"), memberId);
             }
         };
+        */
+
+        return (Specification<MemberOrderTrn>) ((root, query, builder) ->
+                builder.equal(root.get("memberId"), memberId)
+        );
     }
 
 }

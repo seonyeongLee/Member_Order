@@ -10,13 +10,17 @@ import javax.persistence.criteria.Root;
 
 public class OrderSpecification {
     public static Specification<Orders> equalMemberId(String memberId) {
-        return new Specification<Orders>() {
+        /*return new Specification<Orders>() {
             @Override
             public Predicate toPredicate(Root<Orders> root, CriteriaQuery<?> query, CriteriaBuilder criteriaBuilder) {
 
                 return criteriaBuilder.equal(root.get("memberId"), memberId);
             }
-        };
+        };*/
+
+        return (Specification<Orders>) ( (root, query, criteriaBuilder) ->
+                criteriaBuilder.equal(root.get("memberId"), memberId)
+        );
     }
 
 }
