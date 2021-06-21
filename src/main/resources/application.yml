@@ -20,5 +20,5 @@ logging:
     root: info
 
 mybatis:
-  type-aliases-package: com.api.idus
+  type-aliases-package: com.api.sy
   mapper-locations: classpath:mybatis/mapper/**/*.xml
