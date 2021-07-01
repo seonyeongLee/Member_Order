@@ -5,27 +5,23 @@ import com.api.sy.order.dto.OrderListDto;
 import com.api.sy.order.service.OrderService;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
-import org.springframework.stereotype.Controller;
 import org.springframework.validation.BindingResult;
 import org.springframework.validation.FieldError;
 import org.springframework.validation.ObjectError;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.ResponseBody;
+import org.springframework.web.bind.annotation.*;
 
 import java.util.ArrayList;
 import java.util.List;
 
-@Controller
-@RequestMapping(value = "/order")
+
 @Slf4j
 @RequiredArgsConstructor
+@RequestMapping(value = "/order")
+@RestController
 public class OrderController {
     private final OrderService orderService;
 
     @PostMapping(value = "/getMbrOrderList.json")
-    @ResponseBody
     public OrderListDto.Response getMbrOrderList(@RequestBody OrderListDto.Request reqDto,
                                                  BindingResult bindingResult) {
         OrderListDto.Response resDto = new OrderListDto.Response();

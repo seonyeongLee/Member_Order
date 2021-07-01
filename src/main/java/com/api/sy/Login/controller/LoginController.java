@@ -7,28 +7,23 @@ import com.api.sy.common.dto.ErrorFieldDto;
 import com.api.sy.common.exception.DataNotFoundException;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
-import org.springframework.stereotype.Controller;
 import org.springframework.validation.BindingResult;
 import org.springframework.validation.FieldError;
 import org.springframework.validation.ObjectError;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.ResponseBody;
+import org.springframework.web.bind.annotation.*;
 
 import javax.servlet.http.HttpServletRequest;
 import java.util.ArrayList;
 import java.util.List;
 
-@Controller
-@RequestMapping(value = "/login")
 @Slf4j
 @RequiredArgsConstructor
+@RequestMapping(value = "/login")
+@RestController
 public class LoginController {
     private final LoginService loginService;
 
     @PostMapping(value = "/doLogin")
-    @ResponseBody
     public LoginDto.Response doLogin(@RequestBody LoginDto.Request reqDto,
                                      BindingResult bindingResult,
                                      HttpServletRequest request) {
@@ -75,7 +70,6 @@ public class LoginController {
     }
 
     @PostMapping(value = "/doLogout")
-    @ResponseBody
     public LogoutDto.Response doLogout(HttpServletRequest request) {
         return loginService.doLogout(request);
     }
