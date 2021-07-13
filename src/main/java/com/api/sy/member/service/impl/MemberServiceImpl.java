@@ -93,7 +93,7 @@ public class MemberServiceImpl implements MemberService {
     @Override
     public MemberDetailDto.Response getMemberDetail(MemberDetailDto.Request reqDto) {
         Optional<Member> memberInfo = memberRepository.findById(reqDto.getMemberId());
-        if( memberInfo.isEmpty() ) {
+        if( memberInfo.isPresent() ) {
             memberInfo.orElseThrow(() -> new DataNotFoundException("회원이 존재하지 않습니다."));
         }
 

@@ -23,6 +23,9 @@ public class Orders {
     @Column(name = "ORDER_NUM", length = 12, nullable = false)
     private String orderNum;
 
+    @Column(name = "MEMBER_ID", length = 6, nullable = false)
+    private Long memberId;
+
     @Column(name = "PRODUCT_NM", length = 100, nullable = false)
     private String productNm;
 

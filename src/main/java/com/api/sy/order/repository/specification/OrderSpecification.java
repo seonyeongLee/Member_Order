@@ -4,7 +4,7 @@ import com.api.sy.order.entity.Orders;
 import org.springframework.data.jpa.domain.Specification;
 
 public class OrderSpecification {
-    public static Specification<Orders> equalMemberId(String memberId) {
+    public static Specification<Orders> equalMemberId(Long memberId) {
         /*return new Specification<Orders>() {
             @Override
             public Predicate toPredicate(Root<Orders> root, CriteriaQuery<?> query, CriteriaBuilder criteriaBuilder) {

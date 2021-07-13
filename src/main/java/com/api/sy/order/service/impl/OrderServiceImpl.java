@@ -2,9 +2,9 @@ package com.api.sy.order.service.impl;
 
 import com.api.sy.common.utility.MapperUtility;
 import com.api.sy.order.dto.OrderListDto;
-import com.api.sy.order.entity.MemberOrderTrn;
-import com.api.sy.order.repository.MemberOrderTrnRepository;
-import com.api.sy.order.repository.specification.MemberOrderTrnSpecification;
+import com.api.sy.order.entity.Orders;
+import com.api.sy.order.repository.OrderRepository;
+import com.api.sy.order.repository.specification.OrderSpecification;
 import com.api.sy.order.service.OrderService;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
@@ -17,15 +17,15 @@ import java.util.List;
 @Slf4j
 @RequiredArgsConstructor
 public class OrderServiceImpl implements OrderService {
-    private final MemberOrderTrnRepository moTrnRepository;
+    private final OrderRepository orderRepository;
 
     @Override
     public OrderListDto.Response getOrderList(OrderListDto.Request reqDto) {
         OrderListDto.Response resDto = new OrderListDto.Response();
 
-        Specification spec = Specification.where(MemberOrderTrnSpecification.equalMemberId(reqDto.getMemberId()));
+        Specification spec = Specification.where(OrderSpecification.equalMemberId(reqDto.getMemberId()));
 
-        List<MemberOrderTrn> list = moTrnRepository.findAll(spec);
+        List<Orders> list = orderRepository.findAll(spec);
 
         List<OrderListDto.RespBodyData> body = MapperUtility.convertList(list, OrderListDto.RespBodyData.class);
         resDto.setBodyData(body);
